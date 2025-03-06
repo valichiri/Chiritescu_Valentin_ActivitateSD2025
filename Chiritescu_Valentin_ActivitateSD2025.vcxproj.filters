@@ -14,4 +14,12 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Intalniri_AT\2025.02.28_18.00-AT1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Intalniri_AT\2025.03.01_07.30-AT2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
