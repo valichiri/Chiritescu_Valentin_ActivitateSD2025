@@ -1,0 +1,1 @@
+# Chiritescu_Valentin_ActivitateSD2025
