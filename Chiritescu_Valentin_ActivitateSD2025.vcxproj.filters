@@ -21,5 +21,8 @@
     <ClCompile Include="Intalniri_AT\2025.03.01_07.30-AT2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Functii\strtok_s.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
