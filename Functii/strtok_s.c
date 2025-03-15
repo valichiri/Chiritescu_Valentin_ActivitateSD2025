@@ -4,7 +4,7 @@
 
 int main() {
 	char stringInStack[] = "Acest string este in stack";
-	char* stringInHeap = malloc(strlen("Acest string este in heap") + 1);
+	char* stringInHeap = (char*)malloc(strlen("Acest string este in heap") + 1);
 	strcpy_s(stringInHeap, strlen("Acest string este in heap") + 1, "Acest string este in heap");
 
 	printf("char stringInStack[] \"Acest string este in stack\";\n");
