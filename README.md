@@ -1,7 +1,7 @@
 # Activitate SD - ID 2025
 
 Activitate Structuri de Date - Chiritescu Valentin, an 2 ID, grupa 1113  
-*Un singur proiect VS - un singur fisier c activ cu funtia main()*
+*Un singur proiect VS - un singur fisier c activ cu functia main()*
 
 ## Proiect Visual Studio Community 2022
 

@@ -24,5 +24,8 @@
     <ClCompile Include="Functii\strtok_s.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Articole\covrig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
