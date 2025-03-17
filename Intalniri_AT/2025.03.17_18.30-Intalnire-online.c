@@ -1,10 +1,6 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-//trebuie sa folositi fisierul masini.txt
-//sau va creati un alt fisier cu alte date
 
 struct StructuraMasina {
 	int id;
@@ -35,19 +31,20 @@ Masina citireMasinaDinFisier(FILE* file) {
 	fgets(buffer, 100, file);
 	char* aux;
 	Masina m1;
-	aux = strtok(buffer, sep);
+	char* strtokNextPointer = NULL;
+	aux = strtok_s(buffer, sep, &strtokNextPointer);
 	m1.id = atoi(aux);
-	m1.nrUsi = atoi(strtok(NULL, sep));
-	m1.pret = atof(strtok(NULL, sep));
-	aux = strtok(NULL, sep);
-	m1.model = malloc(strlen(aux) + 1);
+	m1.nrUsi = atoi(strtok_s(NULL, sep, &strtokNextPointer));
+	m1.pret = atof(strtok_s(NULL, sep, &strtokNextPointer));
+	aux = strtok_s(NULL, sep, &strtokNextPointer);
+	m1.model = (char*)malloc(strlen(aux) + 1);
 	strcpy_s(m1.model, strlen(aux) + 1, aux);
 
-	aux = strtok(NULL, sep);
-	m1.numeSofer = malloc(strlen(aux) + 1);
+	aux = strtok_s(NULL, sep, &strtokNextPointer);
+	m1.numeSofer = (char*)malloc(strlen(aux) + 1);
 	strcpy_s(m1.numeSofer, strlen(aux) + 1, aux);
 
-	m1.serie = *strtok(NULL, sep);
+	m1.serie = *strtok_s(NULL, sep, &strtokNextPointer);
 	return m1;
 }
 
@@ -85,7 +82,7 @@ void adaugaMasinaInLista(LD* lista, Masina masinaNoua) {
 		lista->ultim->next = nou;
 	}
 	else {
-		lista->ultim = nou;
+		lista->prim = nou;
 	}
 	lista->ultim = nou;
 }
@@ -108,6 +105,9 @@ LD citireLDMasiniDinFisier(const char* numeFisier) {
 }
 
 void dezalocareLDMasini(LD* lista) {
+	if (lista->ultim == NULL && lista->prim == NULL) {
+		return;
+	}
 	while (lista->prim->next) {
 		lista->prim = lista->prim->next;
 		free(lista->prim->prev->info.numeSofer);
@@ -136,9 +136,52 @@ float calculeazaPretMediu(LD lista) {
 	return 0;
 }
 
-void stergeMasinaDupaID(/*lista masini*/ int id) {
-	//sterge masina cu id-ul primit.
-	//tratati situatia ca masina se afla si pe prima pozitie, si pe ultima pozitie
+void stergeMasinaDupaID(LD* lista, int id) {
+	Nod* p = lista->prim;
+	while (p && p->info.id != id) {
+		p = p->next;
+	}
+	if (p == NULL) {
+		printf("ID-ul %d nu a fost gasit in lista, nicio masina nu a fost stearsa.\n\n");
+		return;
+	}
+	if (p->prev == NULL && p->next == NULL) {
+		lista->prim = NULL;
+		lista->ultim = NULL;
+		free(p->info.model);
+		free(p->info.numeSofer);
+		free(p);
+		printf("Masina cu ID-ul %d a fost stearsa din lista, acum lista este goala.\n\n", id);
+		return;
+	}
+	if (p->prev == NULL) {
+		lista->prim = p->next;
+		lista->prim->prev = NULL;
+		free(p->info.model);
+		free(p->info.numeSofer);
+		free(p);
+		printf("Masina cu ID-ul %d a fost stearsa din lista.\n\n", id);
+		return;
+	}
+	if (p->next == NULL) {
+		lista->ultim = p->prev;
+		lista->ultim->next = NULL;
+		free(p->info.model);
+		free(p->info.numeSofer);
+		free(p);
+		printf("Masina cu ID-ul %d a fost stearsa din lista.\n\n", id);
+		return;
+	}
+	if (p->prev != NULL && p->next != NULL) {
+		p->prev->next = p->next;
+		p->next->prev = p->prev;
+		free(p->info.model);
+		free(p->info.numeSofer);
+		free(p);
+		printf("Masina cu ID-ul %d a fost stearsa din lista.\n\n", id);
+		return;
+	}
+	
 }
 
 char* getNumeSoferMasinaScumpa(/*lista dublu inlantuita*/) {
@@ -151,10 +194,26 @@ int main() {
 
 	LD lista = citireLDMasiniDinFisier("masini.txt");
 	afisareListaMasiniDeLaInceput(lista);
-	printf("\n\nInvers:\n");
+	printf("\n\nInvers:\n\n");
 	afisareListaMasiniDeLaSfarsit(lista);
+	
+	printf("Pretul mediu este: %.2f\n\n",calculeazaPretMediu(lista));
+	
+	stergeMasinaDupaID(&lista, 111);
+	stergeMasinaDupaID(&lista, 1);
+	stergeMasinaDupaID(&lista, 10);
+	stergeMasinaDupaID(&lista, 5);
+	afisareListaMasiniDeLaInceput(lista);
 
-	printf("Pretul mediu este: %.2f",calculeazaPretMediu(lista));
+	stergeMasinaDupaID(&lista, 2);
+	stergeMasinaDupaID(&lista, 3);
+	stergeMasinaDupaID(&lista, 4);
+	stergeMasinaDupaID(&lista, 6);
+	stergeMasinaDupaID(&lista, 7);
+	stergeMasinaDupaID(&lista, 8);
+	stergeMasinaDupaID(&lista, 9);
+	afisareListaMasiniDeLaInceput(lista);
+
 	dezalocareLDMasini(&lista);
 	return 0;
 }
