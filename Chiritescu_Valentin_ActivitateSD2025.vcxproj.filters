@@ -27,5 +27,8 @@
     <ClCompile Include="Articole\covrig.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Intalniri_AT\2025.03.17_18.30-Intalnire-online.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
