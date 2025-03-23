@@ -143,7 +143,10 @@
     <ClCompile Include="Intalniri_AT\2025.03.01_07.30-AT2.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Intalniri_AT\2025.03.17_18.30-Intalnire-online.c" />
+    <ClCompile Include="Intalniri_AT\2025.03.17_18.30-Intalnire-online.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Intalniri_AT\2025.03.22_09.00-AT3.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
