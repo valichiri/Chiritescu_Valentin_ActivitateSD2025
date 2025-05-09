@@ -33,5 +33,8 @@
     <ClCompile Include="Intalniri_AT\2025.03.22_09.00-AT3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SI\pregatire_test.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
