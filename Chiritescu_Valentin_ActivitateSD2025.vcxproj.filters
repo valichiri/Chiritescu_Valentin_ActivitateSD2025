@@ -36,5 +36,15 @@
     <ClCompile Include="SI\pregatire_test.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Intalniri_AT\2025.05.13_18.30-Intalnire-online.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Intalniri_AT\2025.05.10_12.00-AT4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="masini.txt" />
+    <Text Include="masini_arbore.txt" />
   </ItemGroup>
 </Project>
